@@ -168,6 +168,7 @@
             // txtSMTP
             // 
             this.txtSMTP.Location = new System.Drawing.Point(48, 21);
+            this.txtSMTP.MaxLength = 10;
             this.txtSMTP.Name = "txtSMTP";
             this.txtSMTP.Size = new System.Drawing.Size(68, 21);
             this.txtSMTP.TabIndex = 1;
@@ -200,6 +201,7 @@
             // txtPsw
             // 
             this.txtPsw.Location = new System.Drawing.Point(80, 36);
+            this.txtPsw.MaxLength = 30;
             this.txtPsw.Name = "txtPsw";
             this.txtPsw.PasswordChar = '*';
             this.txtPsw.Size = new System.Drawing.Size(248, 21);
@@ -223,6 +225,7 @@
             // txtFrom
             // 
             this.txtFrom.Location = new System.Drawing.Point(80, 11);
+            this.txtFrom.MaxLength = 30;
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(151, 21);
             this.txtFrom.TabIndex = 2;
@@ -270,7 +273,7 @@
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(432, 251);
             this.tableLayoutPanel4.TabIndex = 6;
@@ -282,10 +285,10 @@
             this.mailAddress,
             this.describe});
             this.dgvMailList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvMailList.Location = new System.Drawing.Point(78, 43);
+            this.dgvMailList.Location = new System.Drawing.Point(78, 35);
             this.dgvMailList.Name = "dgvMailList";
             this.dgvMailList.RowTemplate.Height = 23;
-            this.dgvMailList.Size = new System.Drawing.Size(351, 205);
+            this.dgvMailList.Size = new System.Drawing.Size(351, 213);
             this.dgvMailList.TabIndex = 5;
             // 
             // mailAddress
@@ -302,7 +305,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 40);
+            this.label9.Location = new System.Drawing.Point(3, 32);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(65, 12);
             this.label9.TabIndex = 1;
@@ -326,12 +329,13 @@
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(78, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(351, 34);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(351, 26);
             this.flowLayoutPanel1.TabIndex = 6;
             // 
             // txtRecAddr
             // 
             this.txtRecAddr.Location = new System.Drawing.Point(3, 3);
+            this.txtRecAddr.MaxLength = 30;
             this.txtRecAddr.Name = "txtRecAddr";
             this.txtRecAddr.Size = new System.Drawing.Size(100, 21);
             this.txtRecAddr.TabIndex = 2;
@@ -411,62 +415,80 @@
             // 
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Items.AddRange(new object[] {
-            "时",
-            "分",
+            "小时",
+            "分钟",
             "秒"});
-            this.comboBox4.Location = new System.Drawing.Point(106, 47);
+            this.comboBox4.Location = new System.Drawing.Point(122, 47);
             this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(74, 20);
+            this.comboBox4.Size = new System.Drawing.Size(60, 20);
             this.comboBox4.TabIndex = 3;
+            this.comboBox4.Text = "分钟";
             // 
             // txtHour
             // 
-            this.txtHour.Location = new System.Drawing.Point(245, 20);
+            this.txtHour.Location = new System.Drawing.Point(249, 20);
+            this.txtHour.MaxLength = 2;
             this.txtHour.Name = "txtHour";
             this.txtHour.Size = new System.Drawing.Size(30, 21);
             this.txtHour.TabIndex = 2;
+            this.txtHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtMin
             // 
-            this.txtMin.Location = new System.Drawing.Point(304, 20);
+            this.txtMin.Location = new System.Drawing.Point(306, 20);
+            this.txtMin.MaxLength = 2;
             this.txtMin.Name = "txtMin";
             this.txtMin.Size = new System.Drawing.Size(30, 21);
             this.txtMin.TabIndex = 2;
+            this.txtMin.Text = "0";
+            this.txtMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtDay
             // 
-            this.txtDay.Location = new System.Drawing.Point(186, 20);
+            this.txtDay.Location = new System.Drawing.Point(192, 20);
+            this.txtDay.MaxLength = 2;
             this.txtDay.Name = "txtDay";
             this.txtDay.Size = new System.Drawing.Size(30, 21);
             this.txtDay.TabIndex = 2;
+            this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // textBox10
             // 
             this.textBox10.Location = new System.Drawing.Point(68, 47);
+            this.textBox10.MaxLength = 2;
             this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(30, 21);
+            this.textBox10.Size = new System.Drawing.Size(40, 21);
             this.textBox10.TabIndex = 2;
+            this.textBox10.Text = "5";
+            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtYear
             // 
             this.txtYear.Location = new System.Drawing.Point(68, 20);
+            this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
-            this.txtYear.Size = new System.Drawing.Size(30, 21);
+            this.txtYear.Size = new System.Drawing.Size(40, 21);
             this.txtYear.TabIndex = 2;
+            this.txtYear.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtMonth
             // 
-            this.txtMonth.Location = new System.Drawing.Point(127, 20);
+            this.txtMonth.Location = new System.Drawing.Point(135, 20);
+            this.txtMonth.MaxLength = 2;
             this.txtMonth.Name = "txtMonth";
             this.txtMonth.Size = new System.Drawing.Size(30, 21);
             this.txtMonth.TabIndex = 2;
+            this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // txtSec
             // 
             this.txtSec.Location = new System.Drawing.Point(363, 20);
+            this.txtSec.MaxLength = 2;
             this.txtSec.Name = "txtSec";
             this.txtSec.Size = new System.Drawing.Size(30, 21);
             this.txtSec.TabIndex = 2;
+            this.txtSec.Text = "0";
+            this.txtSec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // label11
             // 
@@ -480,7 +502,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(399, 23);
+            this.label18.Location = new System.Drawing.Point(398, 23);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(17, 12);
             this.label18.TabIndex = 0;
@@ -489,7 +511,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(340, 23);
+            this.label17.Location = new System.Drawing.Point(341, 23);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(17, 12);
             this.label17.TabIndex = 0;
@@ -498,7 +520,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(281, 23);
+            this.label16.Location = new System.Drawing.Point(284, 23);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(17, 12);
             this.label16.TabIndex = 0;
@@ -507,7 +529,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(222, 23);
+            this.label13.Location = new System.Drawing.Point(227, 23);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(17, 12);
             this.label13.TabIndex = 0;
@@ -516,7 +538,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(163, 23);
+            this.label12.Location = new System.Drawing.Point(170, 23);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(17, 12);
             this.label12.TabIndex = 0;
@@ -525,7 +547,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(104, 23);
+            this.label10.Location = new System.Drawing.Point(113, 23);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(17, 12);
             this.label10.TabIndex = 0;

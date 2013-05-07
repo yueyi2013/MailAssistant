@@ -52,8 +52,12 @@ namespace MailAssistant
             MailUtil mailUtil = new MailUtil();
             foreach (DataGridViewRow dvr in dgvMailList.Rows)
             {
-                mailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                if (dvr.Cells[0].Value!=null)
+                {
+                    mailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                }
             }
+        }
 
         private MailAssistemt bindMailInfo() 
         {
@@ -62,26 +66,11 @@ namespace MailAssistant
             mail.Port = this.cmbSMTP.SelectedText;
             mail.MailFromAddress = this.txtFrom.Text + this.cmbFrom.Text;
             mail.MailPassword = this.txtPsw.Text;
-            mail.AttPathList = getAttPath();
+            mail.AttPathList = this.pathList;
             mail.Subject = this.txtTitle.Text;
             mail.MailContent = this.rTxtContent.Text;
 
             return mail;
-        }
-
-        private ArrayList getAttPath() 
-        {
-            ArrayList pathList = new ArrayList();
-            string att = this.txtBrowse.Text;
-            if (att != null && !att.Trim().Equals(""))
-            {
-                String[] str = att.Split(';');
-                for (int i = 0; i < str.Length;i++)
-                {
-                    pathList.Add(str[i]);
-                }
-            }
-            return pathList;
         }
 
         private void initMailJob() 
@@ -127,8 +116,16 @@ namespace MailAssistant
                 dr.Cells[0].Value = str[0];
                 dr.Cells[1].Value = str[1];
                 dgvMailList.Rows.Add(dr);
-            }            
+            }
+            DateTime dt = DateTime.Now;
+            this.txtYear.Text = dt.Year.ToString();
+            this.txtMonth.Text = dt.Month.ToString();
+            this.txtDay.Text = dt.Day.ToString();
+            this.txtHour.Text = dt.Hour.ToString();
+            this.txtMin.Text = dt.Minute.ToString();
         }
+
+
 
         private void frmMail_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -207,7 +204,7 @@ namespace MailAssistant
         private void btnAdd_Click(object sender, EventArgs e)
         {
             string line = this.txtRecAddr
-                .Text.Trim()+this.cmbAt.SelectedText;
+                .Text.Trim()+this.cmbAt.Text;
             DataGridViewRow dr = new DataGridViewRow();
             dr.CreateCells(this.dgvMailList);
             dr.Cells[0].Value = line;
@@ -223,6 +220,13 @@ namespace MailAssistant
                     continue;
                 dgvMailList.Rows.Remove(dr);
             }
+        }
+
+        private void txtYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //textBox非数字.和退格不响应，8是退格键
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '.' || e.KeyChar == 8))
+                e.Handled = true;
         }
     }
 }
