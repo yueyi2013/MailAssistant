@@ -15,7 +15,7 @@ namespace MailAssistant
 
 
 
-        public bool SendMail(MailAssistemt mail) 
+        public bool SendMail(MailAssistemt mail,string receiver) 
         {
             //创建smtpclient对象
             SmtpClient client = new SmtpClient();
@@ -25,7 +25,7 @@ namespace MailAssistant
             client.DeliveryMethod = SmtpDeliveryMethod.Network;
 
             //创建mailMessage对象 
-            MailMessage message = new MailMessage(mail.MailFromAddress,"709757455@qq.com");
+            MailMessage message = new MailMessage(mail.MailFromAddress,receiver);
             message.Subject = mail.Subject;
             //正文默认格式为html
             message.Body = mail.MailContent;
@@ -44,12 +44,10 @@ namespace MailAssistant
 
             try
             {
-                client.Send(message);
-                MessageBox.Show("Email successfully sent.");                
+                client.Send(message);             
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Send Email Failed." + ex.ToString());
                 return false;
             }
             return true;

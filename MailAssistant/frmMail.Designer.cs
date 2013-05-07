@@ -201,6 +201,7 @@
             // 
             this.txtPsw.Location = new System.Drawing.Point(80, 36);
             this.txtPsw.Name = "txtPsw";
+            this.txtPsw.PasswordChar = '*';
             this.txtPsw.Size = new System.Drawing.Size(248, 21);
             this.txtPsw.TabIndex = 4;
             this.txtPsw.Text = "zhouhy$%";

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailAssistant", "MailAssistant\MailAssistant.csproj", "{D650B87C-599E-41AC-BAD2-8B71549E3096}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailTo", "C:\Documents and Settings\Administrator\桌面\MailTo\MailTo.csproj", "{85868079-11F9-4867-A568-90C739E067A0}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,16 +23,6 @@ Global
 		{D650B87C-599E-41AC-BAD2-8B71549E3096}.Release|Mixed Platforms.Build.0 = Release|x86
 		{D650B87C-599E-41AC-BAD2-8B71549E3096}.Release|x86.ActiveCfg = Release|x86
 		{D650B87C-599E-41AC-BAD2-8B71549E3096}.Release|x86.Build.0 = Release|x86
-		{85868079-11F9-4867-A568-90C739E067A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{85868079-11F9-4867-A568-90C739E067A0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

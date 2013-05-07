@@ -50,8 +50,10 @@ namespace MailAssistant
         private void btnSendMail_Click(object sender, EventArgs e)
         {
             MailUtil mailUtil = new MailUtil();
-            mailUtil.SendMail(bindMailInfo());
-        }
+            foreach (DataGridViewRow dvr in dgvMailList.Rows)
+            {
+                mailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+            }
 
         private MailAssistemt bindMailInfo() 
         {
