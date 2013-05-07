@@ -59,6 +59,8 @@ namespace MailAssistant
             }
         }
 
+
+
         private MailAssistemt bindMailInfo() 
         {
             MailAssistemt mail = new MailAssistemt();
@@ -227,6 +229,11 @@ namespace MailAssistant
             //textBox非数字.和退格不响应，8是退格键
             if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == '.' || e.KeyChar == 8))
                 e.Handled = true;
+        }
+
+        private void btnTimeSend_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -84,6 +84,8 @@
             this.btBrowse = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnTimeSend = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muPort)).BeginInit();
@@ -97,6 +99,7 @@
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -589,8 +592,8 @@
             this.tableLayoutPanel3.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.rTxtContent, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.btnSendMail, 1, 3);
             this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel2, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 1, 3);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -598,7 +601,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(531, 467);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
@@ -644,16 +647,15 @@
             this.rTxtContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rTxtContent.Location = new System.Drawing.Point(51, 73);
             this.rTxtContent.Name = "rTxtContent";
-            this.rTxtContent.Size = new System.Drawing.Size(477, 351);
+            this.rTxtContent.Size = new System.Drawing.Size(477, 344);
             this.rTxtContent.TabIndex = 4;
             this.rTxtContent.Text = "邮件主体";
             // 
             // btnSendMail
             // 
-            this.btnSendMail.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnSendMail.Location = new System.Drawing.Point(407, 430);
+            this.btnSendMail.Location = new System.Drawing.Point(380, 3);
             this.btnSendMail.Name = "btnSendMail";
-            this.btnSendMail.Size = new System.Drawing.Size(121, 34);
+            this.btnSendMail.Size = new System.Drawing.Size(94, 34);
             this.btnSendMail.TabIndex = 5;
             this.btnSendMail.Text = "发送(&S)";
             this.btnSendMail.UseVisualStyleBackColor = true;
@@ -701,6 +703,33 @@
             // 
             this.openFileAttach.Multiselect = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 3;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 1, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(51, 423);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
+            this.tableLayoutPanel5.TabIndex = 7;
+            // 
+            // btnTimeSend
+            // 
+            this.btnTimeSend.Location = new System.Drawing.Point(280, 3);
+            this.btnTimeSend.Name = "btnTimeSend";
+            this.btnTimeSend.Size = new System.Drawing.Size(94, 34);
+            this.btnTimeSend.TabIndex = 5;
+            this.btnTimeSend.Text = "定时发送(&T)";
+            this.btnTimeSend.UseVisualStyleBackColor = true;
+            this.btnTimeSend.Click += new System.EventHandler(this.btnTimeSend_Click);
+            // 
             // frmMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -731,6 +760,7 @@
             this.tableLayoutPanel3.PerformLayout();
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -793,6 +823,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn describe;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Button btnTimeSend;
     }
 }
 
