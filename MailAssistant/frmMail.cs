@@ -49,17 +49,14 @@ namespace MailAssistant
 
         private void btnSendMail_Click(object sender, EventArgs e)
         {
-            MailUtil mailUtil = new MailUtil();
             foreach (DataGridViewRow dvr in dgvMailList.Rows)
             {
                 if (dvr.Cells[0].Value!=null)
                 {
-                    mailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                    MailUtil.SendMail(bindMailInfo(),dvr.Cells[0].Value.ToString());
                 }
             }
         }
-
-
 
         private MailAssistemt bindMailInfo() 
         {
@@ -74,33 +71,76 @@ namespace MailAssistant
 
             return mail;
         }
+        
+        /// <summary>
+        /// 定时发送
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnTimeSend_Click(object sender, EventArgs e)
+        {
+            initMailJob();
+            this.btnTimeSend.Enabled = false;
+        }
 
         private void initMailJob() 
         {
             log.Info("------- Initializing ----------------------");
+            MailUtil.jobMail = bindMailInfo();
+            ArrayList recList = new ArrayList();
+            foreach (DataGridViewRow dvr in dgvMailList.Rows)
+            {
+                if (dvr.Cells[0].Value != null)
+                {
+                    recList.Add(dvr.Cells[0].Value.ToString());
+                }
+            }
+            MailUtil.recList = recList;
+            int timeInter = int.Parse(this.txtTimeInter.Text);
+
             // First we must get a reference to a scheduler
             ISchedulerFactory sf = new StdSchedulerFactory();
             IScheduler sched = sf.GetScheduler();
 
             log.Info("------- Initialization Complete -----------");
-            // computer a time that is on the next round minute
-            DateTimeOffset runTime = DateBuilder.EvenMinuteDate(DateTimeOffset.UtcNow);
+
+            DateTime startTime = new DateTime(int.Parse(this.txtYear.Text), 
+                int.Parse(this.txtMonth.Text),int.Parse(this.txtDay.Text),
+                int.Parse(this.txtHour.Text),int.Parse(this.txtMonth.Text),int.Parse(this.txtSec.Text));
+            
             log.Info("------- Scheduling Job  -------------------");
 
             // define the job and tie it to our HelloJob class
-            IJobDetail job = JobBuilder.Create<HelloJob>()
-                .WithIdentity("job1", "group1")
+            IJobDetail mailJob = JobBuilder.Create<MailSendJob>()
+                .WithIdentity("MailSendJob", "MailSendGroup")
                 .Build();
 
-            // Trigger the job to run on the next round minute
-            ITrigger trigger = TriggerBuilder.Create()
-                .WithIdentity("trigger1", "group1")
-                .StartAt(runTime)
-                .Build();
+            ITrigger mailTrigger = null;
+            if(this.cmbTimeType.Equals("分钟"))
+            {
+                mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                           .WithIdentity("MailSendTrigger", "MailSendGroup")
+                                           .StartAt(startTime)
+                                           .WithSimpleSchedule(x => x.WithIntervalInMinutes(timeInter).RepeatForever())
+                                           .Build();
+            }
+            else if (this.cmbTimeType.Equals("小时"))
+            {
+                mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                           .WithIdentity("MailSendTrigger", "MailSendGroup")
+                                           .StartAt(startTime)
+                                           .WithSimpleSchedule(x => x.WithIntervalInHours(timeInter).RepeatForever())
+                                           .Build();
+            }else{
+                mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
+                                               .WithIdentity("MailSendTrigger", "MailSendGroup")
+                                               .StartAt(startTime)
+                                               .WithSimpleSchedule(x => x.WithIntervalInSeconds(timeInter).RepeatForever())
+                                               .Build();       
+            }            
 
             // Tell quartz to schedule the job using our trigger
-            sched.ScheduleJob(job, trigger);
-            log.Info(string.Format("{0} will run at: {1}", job.Key, runTime.ToString("r")));
+            sched.ScheduleJob(mailJob, mailTrigger);
 
             // Start up the scheduler (nothing can actually run until the 
             // scheduler has been started)
@@ -231,9 +271,83 @@ namespace MailAssistant
                 e.Handled = true;
         }
 
-        private void btnTimeSend_Click(object sender, EventArgs e)
+        private void txtMonth_Leave(object sender, EventArgs e)
+        {
+            if (this.txtMonth.Text.Trim().Equals(""))
+            {
+                this.txtMonth.Text = DateTime.Now.Month.ToString();
+                return;
+            }
+            int mon = int.Parse(this.txtMonth.Text);
+            if (mon > 12 || mon<1)
+            {
+                MessageBox.Show("请输入正确的月份！");
+                this.txtMonth.Text = DateTime.Now.Month.ToString();
+            }
+        }
+
+        private void txtTimeInter_Leave(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtDay_Leave(object sender, EventArgs e)
+        {
+            if (this.txtDay.Text.Trim().Equals(""))
+            {
+                this.txtDay.Text = DateTime.Now.Day.ToString();
+                return;
+            }
+            int day = int.Parse(this.txtDay.Text);
+            if (day > 31 || day < 1)
+            {
+                MessageBox.Show("请输入正确的天数！");
+                this.txtDay.Text = DateTime.Now.Day.ToString();
+                return;
+            }
+            try
+            {
+                DateTime dtValid = DateTime.Parse(this.txtYear.Text+"-"+this.txtMonth.Text+"-"+this.txtDay.Text);
+            }
+            catch {
+
+                MessageBox.Show("请输入正确的天数！");
+                this.txtMonth.Text = DateTime.Now.Month.ToString();
+                this.txtDay.Text = DateTime.Now.Day.ToString();
+                return;
+            }
+        }
+
+        private void txtHour_Leave(object sender, EventArgs e)
+        {
+            if (this.txtHour.Text.Trim().Equals(""))
+            {
+                this.txtHour.Text = DateTime.Now.Hour.ToString();
+                return;
+            }
+            int hour = int.Parse(this.txtHour.Text);
+            if (hour > 23)
+            {
+                MessageBox.Show("请输入正确的小时数！");
+                this.txtHour.Text = DateTime.Now.Hour.ToString();
+                return;
+            }
+        }
+
+        private void txtMin_Leave(object sender, EventArgs e)
+        {
+            if (this.txtMin.Text.Trim().Equals(""))
+            {
+                this.txtMin.Text = DateTime.Now.Minute.ToString();
+                return;
+            }
+            int min = int.Parse(this.txtMin.Text);
+            if (min > 59)
+            {
+                MessageBox.Show("请输入正确的分钟数！");
+                this.txtMin.Text = DateTime.Now.Minute.ToString();
+                return;
+            }
         }
     }
 }

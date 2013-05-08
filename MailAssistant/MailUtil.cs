@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections;
 using System.Net.Mail;
 using System.Net;
 using System.Windows.Forms;
@@ -12,10 +13,10 @@ namespace MailAssistant
     class MailUtil
     {
 
+        public static MailAssistemt jobMail = null;
+        public static ArrayList recList = null;
 
-
-
-        public bool SendMail(MailAssistemt mail,string receiver) 
+        public static bool SendMail(MailAssistemt mail, string receiver) 
         {
             //创建smtpclient对象
             SmtpClient client = new SmtpClient();
@@ -46,7 +47,7 @@ namespace MailAssistant
             {
                 client.Send(message);             
             }
-            catch (Exception ex)
+            catch
             {
                 return false;
             }

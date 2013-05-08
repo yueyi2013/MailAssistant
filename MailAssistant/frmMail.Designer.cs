@@ -55,16 +55,14 @@
             this.btnDel = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.cmbTimeType = new System.Windows.Forms.ComboBox();
             this.txtHour = new System.Windows.Forms.TextBox();
             this.txtMin = new System.Windows.Forms.TextBox();
             this.txtDay = new System.Windows.Forms.TextBox();
-            this.textBox10 = new System.Windows.Forms.TextBox();
+            this.txtTimeInter = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtMonth = new System.Windows.Forms.TextBox();
-            this.txtSec = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -78,14 +76,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.rTxtContent = new System.Windows.Forms.RichTextBox();
-            this.btnSendMail = new System.Windows.Forms.Button();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnSendMail = new System.Windows.Forms.Button();
             this.btnTimeSend = new System.Windows.Forms.Button();
+            this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtSec = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muPort)).BeginInit();
@@ -382,11 +382,11 @@
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.label14);
-            this.groupBox5.Controls.Add(this.comboBox4);
+            this.groupBox5.Controls.Add(this.cmbTimeType);
             this.groupBox5.Controls.Add(this.txtHour);
             this.groupBox5.Controls.Add(this.txtMin);
             this.groupBox5.Controls.Add(this.txtDay);
-            this.groupBox5.Controls.Add(this.textBox10);
+            this.groupBox5.Controls.Add(this.txtTimeInter);
             this.groupBox5.Controls.Add(this.txtYear);
             this.groupBox5.Controls.Add(this.txtMonth);
             this.groupBox5.Controls.Add(this.txtSec);
@@ -414,18 +414,18 @@
             this.label14.TabIndex = 4;
             this.label14.Text = "发送时间：";
             // 
-            // comboBox4
+            // cmbTimeType
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.cmbTimeType.FormattingEnabled = true;
+            this.cmbTimeType.Items.AddRange(new object[] {
             "小时",
             "分钟",
             "秒"});
-            this.comboBox4.Location = new System.Drawing.Point(122, 47);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(60, 20);
-            this.comboBox4.TabIndex = 3;
-            this.comboBox4.Text = "分钟";
+            this.cmbTimeType.Location = new System.Drawing.Point(122, 47);
+            this.cmbTimeType.Name = "cmbTimeType";
+            this.cmbTimeType.Size = new System.Drawing.Size(60, 20);
+            this.cmbTimeType.TabIndex = 3;
+            this.cmbTimeType.Text = "分钟";
             // 
             // txtHour
             // 
@@ -435,6 +435,7 @@
             this.txtHour.Size = new System.Drawing.Size(30, 21);
             this.txtHour.TabIndex = 2;
             this.txtHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtHour.Leave += new System.EventHandler(this.txtHour_Leave);
             // 
             // txtMin
             // 
@@ -445,6 +446,7 @@
             this.txtMin.TabIndex = 2;
             this.txtMin.Text = "0";
             this.txtMin.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtMin.Leave += new System.EventHandler(this.txtMin_Leave);
             // 
             // txtDay
             // 
@@ -454,19 +456,22 @@
             this.txtDay.Size = new System.Drawing.Size(30, 21);
             this.txtDay.TabIndex = 2;
             this.txtDay.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtDay.Leave += new System.EventHandler(this.txtDay_Leave);
             // 
-            // textBox10
+            // txtTimeInter
             // 
-            this.textBox10.Location = new System.Drawing.Point(68, 47);
-            this.textBox10.MaxLength = 2;
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(40, 21);
-            this.textBox10.TabIndex = 2;
-            this.textBox10.Text = "5";
-            this.textBox10.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtTimeInter.Location = new System.Drawing.Point(68, 47);
+            this.txtTimeInter.MaxLength = 2;
+            this.txtTimeInter.Name = "txtTimeInter";
+            this.txtTimeInter.Size = new System.Drawing.Size(40, 21);
+            this.txtTimeInter.TabIndex = 2;
+            this.txtTimeInter.Text = "5";
+            this.txtTimeInter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtTimeInter.Leave += new System.EventHandler(this.txtTimeInter_Leave);
             // 
             // txtYear
             // 
+            this.txtYear.Enabled = false;
             this.txtYear.Location = new System.Drawing.Point(68, 20);
             this.txtYear.MaxLength = 4;
             this.txtYear.Name = "txtYear";
@@ -482,16 +487,7 @@
             this.txtMonth.Size = new System.Drawing.Size(30, 21);
             this.txtMonth.TabIndex = 2;
             this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
-            // 
-            // txtSec
-            // 
-            this.txtSec.Location = new System.Drawing.Point(363, 20);
-            this.txtSec.MaxLength = 2;
-            this.txtSec.Name = "txtSec";
-            this.txtSec.Size = new System.Drawing.Size(30, 21);
-            this.txtSec.TabIndex = 2;
-            this.txtSec.Text = "0";
-            this.txtSec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.txtMonth.Leave += new System.EventHandler(this.txtMonth_Leave);
             // 
             // label11
             // 
@@ -501,15 +497,6 @@
             this.label11.Size = new System.Drawing.Size(41, 12);
             this.label11.TabIndex = 1;
             this.label11.Text = "每隔：";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(398, 23);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(17, 12);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "秒";
             // 
             // label17
             // 
@@ -651,16 +638,6 @@
             this.rTxtContent.TabIndex = 4;
             this.rTxtContent.Text = "邮件主体";
             // 
-            // btnSendMail
-            // 
-            this.btnSendMail.Location = new System.Drawing.Point(380, 3);
-            this.btnSendMail.Name = "btnSendMail";
-            this.btnSendMail.Size = new System.Drawing.Size(94, 34);
-            this.btnSendMail.TabIndex = 5;
-            this.btnSendMail.Text = "发送(&S)";
-            this.btnSendMail.UseVisualStyleBackColor = true;
-            this.btnSendMail.Click += new System.EventHandler(this.btnSendMail_Click);
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.txtBrowse);
@@ -699,10 +676,6 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // openFileAttach
-            // 
-            this.openFileAttach.Multiselect = true;
-            // 
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 3;
@@ -720,6 +693,16 @@
             this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
             this.tableLayoutPanel5.TabIndex = 7;
             // 
+            // btnSendMail
+            // 
+            this.btnSendMail.Location = new System.Drawing.Point(380, 3);
+            this.btnSendMail.Name = "btnSendMail";
+            this.btnSendMail.Size = new System.Drawing.Size(94, 34);
+            this.btnSendMail.TabIndex = 5;
+            this.btnSendMail.Text = "发送(&S)";
+            this.btnSendMail.UseVisualStyleBackColor = true;
+            this.btnSendMail.Click += new System.EventHandler(this.btnSendMail_Click);
+            // 
             // btnTimeSend
             // 
             this.btnTimeSend.Location = new System.Drawing.Point(280, 3);
@@ -729,6 +712,30 @@
             this.btnTimeSend.Text = "定时发送(&T)";
             this.btnTimeSend.UseVisualStyleBackColor = true;
             this.btnTimeSend.Click += new System.EventHandler(this.btnTimeSend_Click);
+            // 
+            // openFileAttach
+            // 
+            this.openFileAttach.Multiselect = true;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(398, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(17, 12);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "秒";
+            // 
+            // txtSec
+            // 
+            this.txtSec.Enabled = false;
+            this.txtSec.Location = new System.Drawing.Point(363, 20);
+            this.txtSec.MaxLength = 2;
+            this.txtSec.Name = "txtSec";
+            this.txtSec.Size = new System.Drawing.Size(30, 21);
+            this.txtSec.TabIndex = 2;
+            this.txtSec.Text = "0";
+            this.txtSec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             // 
             // frmMail
             // 
@@ -799,17 +806,15 @@
         private System.Windows.Forms.TextBox txtHour;
         private System.Windows.Forms.TextBox txtMin;
         private System.Windows.Forms.TextBox txtMonth;
-        private System.Windows.Forms.TextBox txtSec;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox cmbTimeType;
         private System.Windows.Forms.TextBox txtDay;
-        private System.Windows.Forms.TextBox textBox10;
+        private System.Windows.Forms.TextBox txtTimeInter;
         private System.Windows.Forms.TextBox txtYear;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
@@ -825,6 +830,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnTimeSend;
+        private System.Windows.Forms.TextBox txtSec;
+        private System.Windows.Forms.Label label18;
     }
 }
 
