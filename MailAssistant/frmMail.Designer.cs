@@ -33,7 +33,6 @@
             this.muPort = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbSMTP = new System.Windows.Forms.ComboBox();
-            this.txtSMTP = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtPsw = new System.Windows.Forms.TextBox();
@@ -62,7 +61,9 @@
             this.txtTimeInter = new System.Windows.Forms.TextBox();
             this.txtYear = new System.Windows.Forms.TextBox();
             this.txtMonth = new System.Windows.Forms.TextBox();
+            this.txtSec = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -80,12 +81,12 @@
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSendMail = new System.Windows.Forms.Button();
             this.btnTimeSend = new System.Windows.Forms.Button();
             this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
-            this.label18 = new System.Windows.Forms.Label();
-            this.txtSec = new System.Windows.Forms.TextBox();
+            this.btnStopSend = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.cmbSmtpName = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muPort)).BeginInit();
@@ -123,10 +124,10 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cmbSmtpName);
             this.groupBox1.Controls.Add(this.muPort);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.cmbSMTP);
-            this.groupBox1.Controls.Add(this.txtSMTP);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
@@ -167,15 +168,6 @@
             this.cmbSMTP.Size = new System.Drawing.Size(60, 20);
             this.cmbSMTP.TabIndex = 2;
             this.cmbSMTP.Text = ".com";
-            // 
-            // txtSMTP
-            // 
-            this.txtSMTP.Location = new System.Drawing.Point(48, 21);
-            this.txtSMTP.MaxLength = 10;
-            this.txtSMTP.Name = "txtSMTP";
-            this.txtSMTP.Size = new System.Drawing.Size(68, 21);
-            this.txtSMTP.TabIndex = 1;
-            this.txtSMTP.Text = "qq";
             // 
             // label4
             // 
@@ -489,6 +481,17 @@
             this.txtMonth.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
             this.txtMonth.Leave += new System.EventHandler(this.txtMonth_Leave);
             // 
+            // txtSec
+            // 
+            this.txtSec.Enabled = false;
+            this.txtSec.Location = new System.Drawing.Point(363, 20);
+            this.txtSec.MaxLength = 2;
+            this.txtSec.Name = "txtSec";
+            this.txtSec.Size = new System.Drawing.Size(30, 21);
+            this.txtSec.TabIndex = 2;
+            this.txtSec.Text = "0";
+            this.txtSec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -497,6 +500,15 @@
             this.label11.Size = new System.Drawing.Size(41, 12);
             this.label11.TabIndex = 1;
             this.label11.Text = "每隔：";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(398, 23);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(17, 12);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "秒";
             // 
             // label17
             // 
@@ -676,23 +688,6 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 3;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 2, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 1, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(51, 423);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
-            this.tableLayoutPanel5.TabIndex = 7;
-            // 
             // btnSendMail
             // 
             this.btnSendMail.Location = new System.Drawing.Point(380, 3);
@@ -717,25 +712,48 @@
             // 
             this.openFileAttach.Multiselect = true;
             // 
-            // label18
+            // btnStopSend
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(398, 23);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(17, 12);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "秒";
+            this.btnStopSend.Enabled = false;
+            this.btnStopSend.Location = new System.Drawing.Point(180, 3);
+            this.btnStopSend.Name = "btnStopSend";
+            this.btnStopSend.Size = new System.Drawing.Size(94, 34);
+            this.btnStopSend.TabIndex = 5;
+            this.btnStopSend.Text = "停止发送(&S)";
+            this.btnStopSend.UseVisualStyleBackColor = true;
+            this.btnStopSend.Click += new System.EventHandler(this.btnStopSend_Click);
             // 
-            // txtSec
+            // tableLayoutPanel5
             // 
-            this.txtSec.Enabled = false;
-            this.txtSec.Location = new System.Drawing.Point(363, 20);
-            this.txtSec.MaxLength = 2;
-            this.txtSec.Name = "txtSec";
-            this.txtSec.Size = new System.Drawing.Size(30, 21);
-            this.txtSec.TabIndex = 2;
-            this.txtSec.Text = "0";
-            this.txtSec.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtYear_KeyPress);
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.btnStopSend, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 2, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(51, 423);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
+            this.tableLayoutPanel5.TabIndex = 7;
+            // 
+            // cmbSmtpName
+            // 
+            this.cmbSmtpName.FormattingEnabled = true;
+            this.cmbSmtpName.Items.AddRange(new object[] {
+            "qq",
+            "126",
+            "139",
+            "163"});
+            this.cmbSmtpName.Location = new System.Drawing.Point(43, 20);
+            this.cmbSmtpName.Name = "cmbSmtpName";
+            this.cmbSmtpName.Size = new System.Drawing.Size(68, 20);
+            this.cmbSmtpName.TabIndex = 5;
+            this.cmbSmtpName.Text = "qq";
             // 
             // frmMail
             // 
@@ -744,7 +762,7 @@
             this.ClientSize = new System.Drawing.Size(993, 493);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "frmMail";
-            this.Text = "邮件助手(Mial Assistemt)";
+            this.Text = "邮件助手(Mial Assistemt)--QQ邮箱需要在邮箱中设置->账户里，有一个选项\"开启POP3/SMTP服务\"";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMail_FormClosed);
             this.Load += new System.EventHandler(this.frmMail_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -789,7 +807,6 @@
         private System.Windows.Forms.NumericUpDown muPort;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbSMTP;
-        private System.Windows.Forms.TextBox txtSMTP;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPsw;
         private System.Windows.Forms.ComboBox cmbFrom;
@@ -828,10 +845,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn describe;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.Button btnTimeSend;
         private System.Windows.Forms.TextBox txtSec;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Button btnStopSend;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.ComboBox cmbSmtpName;
     }
 }
 

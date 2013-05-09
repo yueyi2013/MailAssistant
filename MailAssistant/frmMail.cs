@@ -61,7 +61,7 @@ namespace MailAssistant
         private MailAssistemt bindMailInfo() 
         {
             MailAssistemt mail = new MailAssistemt();
-            mail.SmtpName = "SMTP."+this.txtSMTP.Text.Trim()+this.cmbSMTP.Text;
+            mail.SmtpName = "SMTP."+this.cmbSmtpName.Text.Trim()+this.cmbSMTP.Text;
             mail.Port = this.cmbSMTP.SelectedText;
             mail.MailFromAddress = this.txtFrom.Text + this.cmbFrom.Text;
             mail.MailPassword = this.txtPsw.Text;
@@ -81,8 +81,18 @@ namespace MailAssistant
         {
             initMailJob();
             this.btnTimeSend.Enabled = false;
+            this.btnStopSend.Enabled = true;
         }
 
+
+        private void btnStopSend_Click(object sender, EventArgs e)
+        {
+            sched.Shutdown();
+            this.btnStopSend.Enabled = false;
+            this.btnTimeSend.Enabled = true;
+        }
+
+        IScheduler sched;
         private void initMailJob() 
         {
             log.Info("------- Initializing ----------------------");
@@ -100,7 +110,7 @@ namespace MailAssistant
 
             // First we must get a reference to a scheduler
             ISchedulerFactory sf = new StdSchedulerFactory();
-            IScheduler sched = sf.GetScheduler();
+            sched = sf.GetScheduler();
 
             log.Info("------- Initialization Complete -----------");
 
@@ -116,7 +126,7 @@ namespace MailAssistant
                 .Build();
 
             ITrigger mailTrigger = null;
-            if(this.cmbTimeType.Equals("分钟"))
+            if(this.cmbTimeType.Text.Equals("分钟"))
             {
                 mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                            .WithIdentity("MailSendTrigger", "MailSendGroup")
@@ -124,7 +134,7 @@ namespace MailAssistant
                                            .WithSimpleSchedule(x => x.WithIntervalInMinutes(timeInter).RepeatForever())
                                            .Build();
             }
-            else if (this.cmbTimeType.Equals("小时"))
+            else if (this.cmbTimeType.Text.Equals("小时"))
             {
                 mailTrigger = (ISimpleTrigger)TriggerBuilder.Create()
                                            .WithIdentity("MailSendTrigger", "MailSendGroup")
