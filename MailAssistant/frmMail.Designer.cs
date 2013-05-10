@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cmbSmtpName = new System.Windows.Forms.ComboBox();
@@ -77,7 +78,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.rTxtContent = new System.Windows.Forms.RichTextBox();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
@@ -87,6 +87,10 @@
             this.btnSendMail = new System.Windows.Forms.Button();
             this.btnTimeSend = new System.Windows.Forms.Button();
             this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
+            this.cmsRightMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsItemRemove = new System.Windows.Forms.ToolStripMenuItem();
+            this.rTxtContent = new System.Windows.Forms.RichTextBox();
+            this.cmbSaveFrom = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muPort)).BeginInit();
@@ -101,6 +105,7 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
+            this.cmsRightMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -194,6 +199,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cmbSaveFrom);
             this.groupBox2.Controls.Add(this.txtPsw);
             this.groupBox2.Controls.Add(this.cmbFrom);
             this.groupBox2.Controls.Add(this.txtFrom);
@@ -213,7 +219,7 @@
             this.txtPsw.MaxLength = 30;
             this.txtPsw.Name = "txtPsw";
             this.txtPsw.PasswordChar = '*';
-            this.txtPsw.Size = new System.Drawing.Size(248, 21);
+            this.txtPsw.Size = new System.Drawing.Size(151, 21);
             this.txtPsw.TabIndex = 4;
             // 
             // cmbFrom
@@ -292,6 +298,7 @@
             this.dgvMailList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.mailAddress,
             this.describe});
+            this.dgvMailList.ContextMenuStrip = this.cmsRightMenu;
             this.dgvMailList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvMailList.Location = new System.Drawing.Point(78, 35);
             this.dgvMailList.Name = "dgvMailList";
@@ -654,15 +661,6 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "正文：";
             // 
-            // rTxtContent
-            // 
-            this.rTxtContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rTxtContent.Location = new System.Drawing.Point(51, 73);
-            this.rTxtContent.Name = "rTxtContent";
-            this.rTxtContent.Size = new System.Drawing.Size(477, 344);
-            this.rTxtContent.TabIndex = 4;
-            this.rTxtContent.Text = "邮件主体";
-            // 
             // flowLayoutPanel2
             // 
             this.flowLayoutPanel2.Controls.Add(this.txtBrowse);
@@ -705,9 +703,9 @@
             // 
             this.tableLayoutPanel5.ColumnCount = 4;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel5.Controls.Add(this.btnStopSend, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 3, 0);
             this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 2, 0);
@@ -722,9 +720,9 @@
             // btnStopSend
             // 
             this.btnStopSend.Enabled = false;
-            this.btnStopSend.Location = new System.Drawing.Point(180, 3);
+            this.btnStopSend.Location = new System.Drawing.Point(210, 3);
             this.btnStopSend.Name = "btnStopSend";
-            this.btnStopSend.Size = new System.Drawing.Size(94, 34);
+            this.btnStopSend.Size = new System.Drawing.Size(84, 34);
             this.btnStopSend.TabIndex = 5;
             this.btnStopSend.Text = "停止发送(&S)";
             this.btnStopSend.UseVisualStyleBackColor = true;
@@ -732,9 +730,9 @@
             // 
             // btnSendMail
             // 
-            this.btnSendMail.Location = new System.Drawing.Point(380, 3);
+            this.btnSendMail.Location = new System.Drawing.Point(390, 3);
             this.btnSendMail.Name = "btnSendMail";
-            this.btnSendMail.Size = new System.Drawing.Size(94, 34);
+            this.btnSendMail.Size = new System.Drawing.Size(84, 34);
             this.btnSendMail.TabIndex = 5;
             this.btnSendMail.Text = "发送(&S)";
             this.btnSendMail.UseVisualStyleBackColor = true;
@@ -742,9 +740,9 @@
             // 
             // btnTimeSend
             // 
-            this.btnTimeSend.Location = new System.Drawing.Point(280, 3);
+            this.btnTimeSend.Location = new System.Drawing.Point(300, 3);
             this.btnTimeSend.Name = "btnTimeSend";
-            this.btnTimeSend.Size = new System.Drawing.Size(94, 34);
+            this.btnTimeSend.Size = new System.Drawing.Size(84, 34);
             this.btnTimeSend.TabIndex = 5;
             this.btnTimeSend.Text = "定时发送(&T)";
             this.btnTimeSend.UseVisualStyleBackColor = true;
@@ -753,6 +751,39 @@
             // openFileAttach
             // 
             this.openFileAttach.Multiselect = true;
+            // 
+            // cmsRightMenu
+            // 
+            this.cmsRightMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmsItemRemove});
+            this.cmsRightMenu.Name = "cmsRightMenu";
+            this.cmsRightMenu.Size = new System.Drawing.Size(113, 26);
+            // 
+            // cmsItemRemove
+            // 
+            this.cmsItemRemove.Name = "cmsItemRemove";
+            this.cmsItemRemove.Size = new System.Drawing.Size(112, 22);
+            this.cmsItemRemove.Text = "删除(R)";
+            this.cmsItemRemove.Click += new System.EventHandler(this.cmsItemRemove_Click);
+            // 
+            // rTxtContent
+            // 
+            this.rTxtContent.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rTxtContent.Location = new System.Drawing.Point(51, 73);
+            this.rTxtContent.Name = "rTxtContent";
+            this.rTxtContent.Size = new System.Drawing.Size(477, 344);
+            this.rTxtContent.TabIndex = 4;
+            this.rTxtContent.Text = "邮件主体";
+            // 
+            // cmbSaveFrom
+            // 
+            this.cmbSaveFrom.AutoSize = true;
+            this.cmbSaveFrom.Location = new System.Drawing.Point(237, 41);
+            this.cmbSaveFrom.Name = "cmbSaveFrom";
+            this.cmbSaveFrom.Size = new System.Drawing.Size(84, 16);
+            this.cmbSaveFrom.TabIndex = 5;
+            this.cmbSaveFrom.Text = "保存发件人";
+            this.cmbSaveFrom.UseVisualStyleBackColor = true;
             // 
             // frmMail
             // 
@@ -785,6 +816,7 @@
             this.flowLayoutPanel2.ResumeLayout(false);
             this.flowLayoutPanel2.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
+            this.cmsRightMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -802,7 +834,6 @@
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.RichTextBox rTxtContent;
         private System.Windows.Forms.NumericUpDown muPort;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cmbSMTP;
@@ -850,6 +881,10 @@
         private System.Windows.Forms.Button btnStopSend;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ComboBox cmbSmtpName;
+        private System.Windows.Forms.ContextMenuStrip cmsRightMenu;
+        private System.Windows.Forms.ToolStripMenuItem cmsItemRemove;
+        private System.Windows.Forms.RichTextBox rTxtContent;
+        private System.Windows.Forms.CheckBox cmbSaveFrom;
     }
 }
 

@@ -7,6 +7,8 @@ using System.Net.Mail;
 using System.Net;
 using System.Windows.Forms;
 using System.Net.Mime;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace MailAssistant
 {
@@ -52,6 +54,57 @@ namespace MailAssistant
                 return false;
             }
             return true;
+        }
+
+        /// <summary>
+        /// 读取邮件信息
+        /// </summary>
+        /// <returns></returns>
+        public static MailAssistemt GetMailAssistemt()
+        {
+            FileStream fs = null;
+            try
+            {
+                fs = new FileStream("mails/MailAss.ser", FileMode.Open);
+                BinaryFormatter bf = new BinaryFormatter();
+                return (MailAssistemt)bf.Deserialize(fs);
+            }
+            catch
+            {
+                return null;
+            }
+            finally { 
+                if(fs!=null)
+                {
+                    fs.Close();
+                }            
+            }
+        }
+
+        /// <summary>
+        /// 保存邮件信息
+        /// </summary>
+        /// <param name="mailAss"></param>
+        public static void SaveMailAssistemt(MailAssistemt mailAss)
+        {
+            FileStream fs = null;
+            try
+            {
+                fs= new FileStream("mails/MailAss.ser", FileMode.Create);
+                BinaryFormatter bf = new BinaryFormatter();
+                bf.Serialize(fs, mailAss);
+            }
+            catch
+            {
+                return;
+            }
+            finally { 
+                if(fs!=null)
+                {
+                    fs.Close();
+                }
+                
+            }
         }
 
     }

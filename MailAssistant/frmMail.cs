@@ -380,5 +380,10 @@ namespace MailAssistant
                 return;
             }
         }
+
+        private void cmsItemRemove_Click(object sender, EventArgs e)
+        {
+            btnDel_Click(sender,e);
+        }
     }
 }

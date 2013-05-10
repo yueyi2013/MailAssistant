@@ -6,6 +6,7 @@ using System.Collections;
 
 namespace MailAssistant
 {
+    [Serializable()]
     class MailAssistemt
     {
         private string smtpName;
@@ -39,11 +40,47 @@ namespace MailAssistant
         }
 
         private int year;
+
+        public int Year
+        {
+            get { return year; }
+            set { year = value; }
+        }
         private int month;
+
+        public int Month
+        {
+            get { return month; }
+            set { month = value; }
+        }
         private int day;
+
+        public int Day
+        {
+            get { return day; }
+            set { day = value; }
+        }
         private int hour;
+
+        public int Hour
+        {
+            get { return hour; }
+            set { hour = value; }
+        }
         private int min;
+
+        public int Min
+        {
+            get { return min; }
+            set { min = value; }
+        }
         private int second;
+
+        public int Second
+        {
+            get { return second; }
+            set { second = value; }
+        }
 
         private ArrayList mailList = new ArrayList();
         private string subject;
