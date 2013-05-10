@@ -215,7 +215,6 @@
             this.txtPsw.PasswordChar = '*';
             this.txtPsw.Size = new System.Drawing.Size(248, 21);
             this.txtPsw.TabIndex = 4;
-            this.txtPsw.Text = "zhouhy$%";
             // 
             // cmbFrom
             // 
@@ -238,7 +237,7 @@
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(151, 21);
             this.txtFrom.TabIndex = 2;
-            this.txtFrom.Text = "624592410";
+            this.txtFrom.Text = "709757455";
             // 
             // label7
             // 
