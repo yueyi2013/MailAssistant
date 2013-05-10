@@ -49,12 +49,28 @@ namespace MailAssistant
 
         private void btnSendMail_Click(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow dvr in dgvMailList.Rows)
+            try
             {
-                if (dvr.Cells[0].Value!=null)
+                this.btnSendMail.Enabled = false;
+                this.btnTimeSend.Enabled = false;
+                foreach (DataGridViewRow dvr in dgvMailList.Rows)
                 {
-                    MailUtil.SendMail(bindMailInfo(),dvr.Cells[0].Value.ToString());
+                    if (dvr.Cells[0].Value != null)
+                    {
+                        MailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                    }
                 }
+                MessageBox.Show("邮件发送成功！");
+            }
+            catch
+            {
+                MessageBox.Show("邮件发送失败！请检查输入的值是否正确。");
+
+            }
+            finally {
+
+                this.btnSendMail.Enabled = true;
+                this.btnTimeSend.Enabled = true;            
             }
         }
 
