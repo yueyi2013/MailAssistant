@@ -30,6 +30,7 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbSmtpName = new System.Windows.Forms.ComboBox();
             this.muPort = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.cmbSMTP = new System.Windows.Forms.ComboBox();
@@ -81,12 +82,11 @@
             this.txtBrowse = new System.Windows.Forms.TextBox();
             this.btBrowse = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnStopSend = new System.Windows.Forms.Button();
             this.btnSendMail = new System.Windows.Forms.Button();
             this.btnTimeSend = new System.Windows.Forms.Button();
             this.openFileAttach = new System.Windows.Forms.OpenFileDialog();
-            this.btnStopSend = new System.Windows.Forms.Button();
-            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmbSmtpName = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.muPort)).BeginInit();
@@ -136,6 +136,20 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "SMTP";
+            // 
+            // cmbSmtpName
+            // 
+            this.cmbSmtpName.FormattingEnabled = true;
+            this.cmbSmtpName.Items.AddRange(new object[] {
+            "qq",
+            "126",
+            "139",
+            "163"});
+            this.cmbSmtpName.Location = new System.Drawing.Point(43, 20);
+            this.cmbSmtpName.Name = "cmbSmtpName";
+            this.cmbSmtpName.Size = new System.Drawing.Size(68, 20);
+            this.cmbSmtpName.TabIndex = 5;
+            this.cmbSmtpName.Text = "qq";
             // 
             // muPort
             // 
@@ -688,6 +702,35 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel5.Controls.Add(this.btnStopSend, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 2, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(51, 423);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 1;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
+            this.tableLayoutPanel5.TabIndex = 7;
+            // 
+            // btnStopSend
+            // 
+            this.btnStopSend.Enabled = false;
+            this.btnStopSend.Location = new System.Drawing.Point(180, 3);
+            this.btnStopSend.Name = "btnStopSend";
+            this.btnStopSend.Size = new System.Drawing.Size(94, 34);
+            this.btnStopSend.TabIndex = 5;
+            this.btnStopSend.Text = "停止发送(&S)";
+            this.btnStopSend.UseVisualStyleBackColor = true;
+            this.btnStopSend.Click += new System.EventHandler(this.btnStopSend_Click);
+            // 
             // btnSendMail
             // 
             this.btnSendMail.Location = new System.Drawing.Point(380, 3);
@@ -712,49 +755,6 @@
             // 
             this.openFileAttach.Multiselect = true;
             // 
-            // btnStopSend
-            // 
-            this.btnStopSend.Enabled = false;
-            this.btnStopSend.Location = new System.Drawing.Point(180, 3);
-            this.btnStopSend.Name = "btnStopSend";
-            this.btnStopSend.Size = new System.Drawing.Size(94, 34);
-            this.btnStopSend.TabIndex = 5;
-            this.btnStopSend.Text = "停止发送(&S)";
-            this.btnStopSend.UseVisualStyleBackColor = true;
-            this.btnStopSend.Click += new System.EventHandler(this.btnStopSend_Click);
-            // 
-            // tableLayoutPanel5
-            // 
-            this.tableLayoutPanel5.ColumnCount = 4;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel5.Controls.Add(this.btnStopSend, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnSendMail, 3, 0);
-            this.tableLayoutPanel5.Controls.Add(this.btnTimeSend, 2, 0);
-            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(51, 423);
-            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 1;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(477, 41);
-            this.tableLayoutPanel5.TabIndex = 7;
-            // 
-            // cmbSmtpName
-            // 
-            this.cmbSmtpName.FormattingEnabled = true;
-            this.cmbSmtpName.Items.AddRange(new object[] {
-            "qq",
-            "126",
-            "139",
-            "163"});
-            this.cmbSmtpName.Location = new System.Drawing.Point(43, 20);
-            this.cmbSmtpName.Name = "cmbSmtpName";
-            this.cmbSmtpName.Size = new System.Drawing.Size(68, 20);
-            this.cmbSmtpName.TabIndex = 5;
-            this.cmbSmtpName.Text = "qq";
-            // 
             // frmMail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -762,7 +762,7 @@
             this.ClientSize = new System.Drawing.Size(993, 493);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Name = "frmMail";
-            this.Text = "邮件助手(Mial Assistemt)--QQ邮箱需要在邮箱中设置->账户里，有一个选项\"开启POP3/SMTP服务\"";
+            this.Text = "邮件助手(Mail Assistemt)--QQ邮箱需要在邮箱中设置->账户里，有一个选项\"开启POP3/SMTP服务\"需要勾选";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmMail_FormClosed);
             this.Load += new System.EventHandler(this.frmMail_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
