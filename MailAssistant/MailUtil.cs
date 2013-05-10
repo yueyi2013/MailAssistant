@@ -18,33 +18,33 @@ namespace MailAssistant
 
         public static bool SendMail(MailAssistemt mail, string receiver) 
         {
-            //创建smtpclient对象
-            SmtpClient client = new SmtpClient();
-            client.Host = mail.SmtpName;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential(mail.MailFromAddress, mail.MailPassword);
-            client.DeliveryMethod = SmtpDeliveryMethod.Network;
-
-            //创建mailMessage对象 
-            MailMessage message = new MailMessage(mail.MailFromAddress,receiver);
-            message.Subject = mail.Subject;
-            //正文默认格式为html
-            message.Body = mail.MailContent;
-            message.IsBodyHtml = true;
-            message.BodyEncoding = Encoding.UTF8;
-
-            //添加附件
-            if (mail.AttPathList.Count != 0)
-            {
-                foreach (string path in mail.AttPathList)
-                {
-                    Attachment data = new Attachment(path, MediaTypeNames.Application.Octet);
-                    message.Attachments.Add(data);
-                }
-            }
-
             try
             {
+                //创建smtpclient对象
+                SmtpClient client = new SmtpClient();
+                client.Host = mail.SmtpName;
+                client.Timeout = 30000;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new NetworkCredential(mail.MailFromAddress, mail.MailPassword);
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+
+                //创建mailMessage对象 
+                MailMessage message = new MailMessage(mail.MailFromAddress,receiver);
+                message.Subject = mail.Subject;
+                //正文默认格式为html
+                message.Body = mail.MailContent;
+                message.IsBodyHtml = true;
+                message.BodyEncoding = Encoding.UTF8;
+
+                //添加附件
+                if (mail.AttPathList.Count != 0)
+                {
+                  foreach (string path in mail.AttPathList)
+                  {
+                        Attachment data = new Attachment(path, MediaTypeNames.Application.Octet);
+                        message.Attachments.Add(data);
+                    }
+                }
                 client.Send(message);             
             }
             catch

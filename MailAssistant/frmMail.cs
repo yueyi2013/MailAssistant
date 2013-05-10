@@ -51,13 +51,18 @@ namespace MailAssistant
         {
             try
             {
+                bool isSent = true;
                 this.btnSendMail.Enabled = false;
                 this.btnTimeSend.Enabled = false;
                 foreach (DataGridViewRow dvr in dgvMailList.Rows)
                 {
                     if (dvr.Cells[0].Value != null)
                     {
-                        MailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                        isSent = MailUtil.SendMail(bindMailInfo(), dvr.Cells[0].Value.ToString());
+                        if (!isSent) {
+                            MessageBox.Show("邮件发送失败！请检查输入的值是否正确。");
+                            return;
+                        }
                     }
                 }
                 MessageBox.Show("邮件发送成功！");
