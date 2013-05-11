@@ -385,5 +385,13 @@ namespace MailAssistant
         {
             btnDel_Click(sender,e);
         }
+
+        private void rTxtContent_DoubleClick(object sender, EventArgs e)
+        {
+            frmBodyEditor.htmlBody = this.rTxtContent.Text;
+            frmBodyEditor objBodyEditor = new frmBodyEditor();
+            objBodyEditor.ShowDialog();
+            this.rTxtContent.Text = frmBodyEditor.htmlBody;
+        }
     }
 }
