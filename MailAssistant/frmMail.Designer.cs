@@ -37,7 +37,7 @@
             this.cmbSMTP = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cmbSaveFrom = new System.Windows.Forms.CheckBox();
+            this.chkSaveFrom = new System.Windows.Forms.CheckBox();
             this.txtPsw = new System.Windows.Forms.TextBox();
             this.cmbFrom = new System.Windows.Forms.ComboBox();
             this.txtFrom = new System.Windows.Forms.TextBox();
@@ -158,6 +158,7 @@
             // 
             // muPort
             // 
+            this.muPort.Enabled = false;
             this.muPort.Location = new System.Drawing.Point(237, 21);
             this.muPort.Name = "muPort";
             this.muPort.Size = new System.Drawing.Size(60, 21);
@@ -199,7 +200,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cmbSaveFrom);
+            this.groupBox2.Controls.Add(this.chkSaveFrom);
             this.groupBox2.Controls.Add(this.txtPsw);
             this.groupBox2.Controls.Add(this.cmbFrom);
             this.groupBox2.Controls.Add(this.txtFrom);
@@ -213,15 +214,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "发件人";
             // 
-            // cmbSaveFrom
+            // chkSaveFrom
             // 
-            this.cmbSaveFrom.AutoSize = true;
-            this.cmbSaveFrom.Location = new System.Drawing.Point(237, 41);
-            this.cmbSaveFrom.Name = "cmbSaveFrom";
-            this.cmbSaveFrom.Size = new System.Drawing.Size(84, 16);
-            this.cmbSaveFrom.TabIndex = 5;
-            this.cmbSaveFrom.Text = "保存发件人";
-            this.cmbSaveFrom.UseVisualStyleBackColor = true;
+            this.chkSaveFrom.AutoSize = true;
+            this.chkSaveFrom.Location = new System.Drawing.Point(237, 41);
+            this.chkSaveFrom.Name = "chkSaveFrom";
+            this.chkSaveFrom.Size = new System.Drawing.Size(84, 16);
+            this.chkSaveFrom.TabIndex = 5;
+            this.chkSaveFrom.Text = "保存发件人";
+            this.chkSaveFrom.UseVisualStyleBackColor = true;
             // 
             // txtPsw
             // 
@@ -231,7 +232,6 @@
             this.txtPsw.PasswordChar = '*';
             this.txtPsw.Size = new System.Drawing.Size(151, 21);
             this.txtPsw.TabIndex = 4;
-            this.txtPsw.Text = "zhouhy$%";
             // 
             // cmbFrom
             // 
@@ -254,7 +254,6 @@
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(151, 21);
             this.txtFrom.TabIndex = 2;
-            this.txtFrom.Text = "624592410";
             // 
             // label7
             // 
@@ -380,7 +379,6 @@
             this.txtRecAddr.Size = new System.Drawing.Size(100, 21);
             this.txtRecAddr.TabIndex = 2;
             this.txtRecAddr.Tag = "";
-            this.txtRecAddr.Text = "709757455";
             // 
             // cmbAt
             // 
@@ -656,7 +654,6 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(477, 21);
             this.txtTitle.TabIndex = 1;
-            this.txtTitle.Text = "邮件主题";
             // 
             // label1
             // 
@@ -693,7 +690,7 @@
             this.rTxtContent.Name = "rTxtContent";
             this.rTxtContent.Size = new System.Drawing.Size(477, 344);
             this.rTxtContent.TabIndex = 4;
-            this.rTxtContent.Text = "邮件主体";
+            this.rTxtContent.Text = "";
             this.rTxtContent.DoubleClick += new System.EventHandler(this.rTxtContent_DoubleClick);
             // 
             // flowLayoutPanel2
@@ -885,7 +882,7 @@
         private System.Windows.Forms.ComboBox cmbSmtpName;
         private System.Windows.Forms.ContextMenuStrip cmsRightMenu;
         private System.Windows.Forms.ToolStripMenuItem cmsItemRemove;
-        private System.Windows.Forms.CheckBox cmbSaveFrom;
+        private System.Windows.Forms.CheckBox chkSaveFrom;
         private System.Windows.Forms.RichTextBox rTxtContent;
     }
 }

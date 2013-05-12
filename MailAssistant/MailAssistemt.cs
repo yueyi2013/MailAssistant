@@ -31,12 +31,28 @@ namespace MailAssistant
             set { mailFromAddress = value; }
         }
 
+        private string mailFromType;
+
+        public string MailFromType
+        {
+            get { return mailFromType; }
+            set { mailFromType = value; }
+        }
+
         private string mailPassword;
 
         public string MailPassword
         {
             get { return mailPassword; }
             set { mailPassword = value; }
+        }
+
+        private bool isCheckedFrom = false;
+
+        public bool IsCheckedFrom
+        {
+            get { return isCheckedFrom; }
+            set { isCheckedFrom = value; }
         }
 
         private int year;

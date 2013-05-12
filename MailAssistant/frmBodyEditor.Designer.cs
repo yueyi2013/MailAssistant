@@ -36,7 +36,7 @@
             this.heMaxBodyEditor.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.heMaxBodyEditor.BodyFont = new WinHtmlEditor.HtmlFontProperty("宋体", WinHtmlEditor.HtmlFontSize.xxSmall, false, false, false, false, false, false);
             this.heMaxBodyEditor.BodyInnerHTML = null;
-            this.heMaxBodyEditor.BodyInnerText = null;
+            this.heMaxBodyEditor.BodyInnerText = "邮件主体";
             this.heMaxBodyEditor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.heMaxBodyEditor.EnterToBR = false;
             this.heMaxBodyEditor.FontSize = WinHtmlEditor.FontSize.Three;

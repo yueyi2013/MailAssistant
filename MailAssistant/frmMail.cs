@@ -51,6 +51,11 @@ namespace MailAssistant
         {
             try
             {
+                if (!checkMail()) 
+                {
+                    MessageBox.Show("请输入相关的邮件信息！");
+                    return;
+                }
                 bool isSent = true;
                 this.btnSendMail.Enabled = false;
                 this.btnTimeSend.Enabled = false;
@@ -79,11 +84,43 @@ namespace MailAssistant
             }
         }
 
+        private bool checkMail() 
+        {
+            bool isPassed = true;
+            if (this.cmbSmtpName.Text.Trim().Equals(""))
+            {
+                isPassed = false;
+            }
+            else if (this.cmbSMTP.Text.Trim().Equals(""))
+            {
+                isPassed = false;
+            }
+            else if (this.txtFrom.Text.Trim().Equals(""))
+            {
+                isPassed = false;
+            }
+            else if (this.cmbFrom.Text.Trim().Equals(""))
+            {
+                isPassed = false;
+            }
+            else if (this.txtPsw.Text.Trim().Equals(""))
+            {
+                isPassed = false;
+            }
+            else if (this.dgvMailList.RowCount<=1)
+            {
+                isPassed = false;
+            }
+
+
+            return isPassed;
+        }
+
         private MailAssistemt bindMailInfo() 
         {
             MailAssistemt mail = new MailAssistemt();
             mail.SmtpName = "SMTP."+this.cmbSmtpName.Text.Trim()+this.cmbSMTP.Text;
-            mail.Port = this.cmbSMTP.SelectedText;
+            mail.Port = this.muPort.Value.ToString();
             mail.MailFromAddress = this.txtFrom.Text + this.cmbFrom.Text;
             mail.MailPassword = this.txtPsw.Text;
             mail.AttPathList = this.pathList;
@@ -100,6 +137,11 @@ namespace MailAssistant
         /// <param name="e"></param>
         private void btnTimeSend_Click(object sender, EventArgs e)
         {
+            if (!checkMail())
+            {
+                MessageBox.Show("请输入相关的邮件信息！");
+                return;
+            }
             initMailJob();
             this.btnTimeSend.Enabled = false;
             this.btnStopSend.Enabled = true;
@@ -196,6 +238,16 @@ namespace MailAssistant
             this.txtDay.Text = dt.Day.ToString();
             this.txtHour.Text = dt.Hour.ToString();
             this.txtMin.Text = dt.Minute.ToString();
+
+            MailAssistemt objMA = MailUtil.GetMailAssistemt();
+            if (objMA!=null)
+            {
+                this.cmbFrom.Text = objMA.MailFromType;
+                this.txtFrom.Text = objMA.MailFromAddress;
+                this.txtPsw.Text = objMA.MailPassword;
+                this.chkSaveFrom.Checked = objMA.IsCheckedFrom;
+            }
+
         }
 
 
@@ -209,6 +261,16 @@ namespace MailAssistant
                 mailList.Add(line);
             }
             saveReceivers(mailList);
+            if (this.chkSaveFrom.Checked)
+            {
+                MailAssistemt objMA = new MailAssistemt();
+                objMA.MailFromType = this.cmbFrom.Text;
+                objMA.MailFromAddress = this.txtFrom.Text;
+                objMA.MailPassword = this.txtPsw.Text;
+                objMA.IsCheckedFrom = true;
+                MailUtil.SaveMailAssistemt(objMA);
+            }
+            
         }
 
         /// <summary>
